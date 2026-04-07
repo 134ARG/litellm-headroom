@@ -2,46 +2,42 @@ version: "3.9"
 services:
   litellm:
     build: .
-    network_mode: host
+    ports:
+      - "4000:4000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./config.yaml:/app/config.yaml
     env_file:
       - .env
     environment:
-      - DATABASE_URL=postgresql://llmproxy:dbpassword9090@127.0.0.1:5432/litellm
+      - DATABASE_URL=postgresql://llmproxy:dbpassword9090@db:5432/litellm
       - STORE_MODEL_IN_DB=True
     depends_on:
       db:
         condition: service_healthy
     restart: unless-stopped
 
-    ## --- Bridge network mode (for hosts with iptables enabled) ---
-    ## Uncomment below and comment out network_mode + environment above
-    # ports:
-    #   - "4000:4000"
-    # extra_hosts:
-    #   - "host.docker.internal:host-gateway"
+    ## --- Host network mode (for hosts with iptables disabled) ---
+    ## Uncomment network_mode, comment out ports/extra_hosts/environment above
+    # network_mode: host
     # environment:
-    #   - DATABASE_URL=postgresql://llmproxy:dbpassword9090@db:5432/litellm
+    #   - DATABASE_URL=postgresql://llmproxy:dbpassword9090@127.0.0.1:5432/litellm
     #   - STORE_MODEL_IN_DB=True
 
   db:
     image: postgres:16
-    network_mode: host
     environment:
       POSTGRES_USER: llmproxy
       POSTGRES_PASSWORD: dbpassword9090
       POSTGRES_DB: litellm
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U llmproxy -d litellm"]
       interval: 5s
       timeout: 5s
       retries: 5
 
-    ## --- Bridge network mode ---
-    ## Remove network_mode: host above when using bridge
-
-volumes:
-  pgdata:
+    ## --- Host network mode ---
+    # network_mode: host

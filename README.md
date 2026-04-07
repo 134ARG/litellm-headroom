@@ -28,27 +28,51 @@ curl http://localhost:4000/v1/chat/completions \
   -d '{"model": "ollama/qwen3.5:4b", "messages": [{"role": "user", "content": "hi"}]}'
 ```
 
+## Database
+
+Postgres data is stored on the host at `./data/postgres/` (bind mount, not a Docker volume). This directory is created automatically on first run and is gitignored.
+
+All runtime state lives here — users, API keys, teams, budgets, spend logs, and models added via the UI.
+
+Backup:
+```bash
+docker compose exec db pg_dump -U llmproxy litellm > backup.sql
+```
+
+Restore:
+```bash
+docker compose exec -T db psql -U llmproxy litellm < backup.sql
+```
+
+To wipe and start fresh, stop the containers and delete the directory:
+```bash
+docker compose down
+rm -rf data/postgres
+docker compose up -d
+```
+
 ## Network modes
 
-**Host network** (default) — for machines with Docker iptables disabled:
-- `network_mode: host` is active in `docker-compose.yaml`
-- `OLLAMA_API_BASE=http://127.0.0.1:11434`
-
-**Bridge network** — for machines with iptables enabled (servers, CI):
-- Comment out `network_mode: host`, uncomment the `ports`/`extra_hosts`/`environment` block
+**Bridge network** (default) — for machines with iptables enabled (servers, CI):
+- `ports` + `extra_hosts` are active in `docker-compose.yaml`
 - `OLLAMA_API_BASE=http://host.docker.internal:11434`
+
+**Host network** — for machines with Docker iptables disabled:
+- Uncomment `network_mode: host`, comment out `ports`/`extra_hosts`/`environment` block
+- `OLLAMA_API_BASE=http://127.0.0.1:11434`
 
 See comments in `docker-compose.yaml` for details.
 
 ## Files
 
-| File | Purpose |
+| File / Directory | Purpose |
 |---|---|
 | `Dockerfile` | Extends official LiteLLM image, adds `headroom-ai` |
 | `start_litellm.py` | Registers Headroom callback, delegates to LiteLLM CLI |
 | `config.yaml` | Model definitions with custom pricing |
 | `docker-compose.yaml` | LiteLLM + Postgres |
 | `.env.example` | Template for environment variables |
+| `data/postgres/` | Postgres data directory (auto-created, gitignored) |
 
 ## How Headroom works here
 
