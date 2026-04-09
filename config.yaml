@@ -3,166 +3,61 @@
 # Docs: https://docs.litellm.ai/docs/proxy/custom_pricing
 
 model_list:
-  # --- Qwen 3.5 family ---
-  - model_name: ollama/qwen3.5:35b-a3b-q4_K_M
+  # --- https://mindracode.com/ ---  
+  - model_name: claude-sonnet4.5
     litellm_params:
-      model: ollama/qwen3.5:35b-a3b-q4_K_M
-      api_base: os.environ/OLLAMA_API_BASE
+      model: claude-sonnet-4-5-20250929
+      api_base: os.environ/MINDRACODE_API_BASE
+      api_key: os.environ/SSCT_API_CLAUDE_KIRO
     model_info:
-      input_cost_per_token: 0.0000008
-      output_cost_per_token: 0.0000024
+      input_cost_per_token:  0.0000006
+      output_cost_per_token: 0.0000030
 
-  - model_name: ollama/qwen3.5-27b-q3:latest
+  - model_name: claude-opus4.5
     litellm_params:
-      model: ollama/qwen3.5-27b-q3:latest
-      api_base: os.environ/OLLAMA_API_BASE
+      model: claude-opus-4-5-20251101
+      api_base: os.environ/MINDRACODE_API_BASE
+      api_key: os.environ/SSCT_API_CLAUDE_KIRO
     model_info:
-      input_cost_per_token: 0.0000006
-      output_cost_per_token: 0.0000018
+      input_cost_per_token:  0.0000010
+      output_cost_per_token: 0.0000050
 
-  - model_name: ollama/qwen3.5-27b-q4:latest
+  - model_name: claude-opus4.6
     litellm_params:
-      model: ollama/qwen3.5-27b-q4:latest
-      api_base: os.environ/OLLAMA_API_BASE
+      model: claude-opus-4-6
+      api_base: os.environ/MINDRACODE_API_BASE
+      api_key: os.environ/SSCT_API_CLAUDE_AWS
     model_info:
-      input_cost_per_token: 0.0000007
-      output_cost_per_token: 0.000002
+      input_cost_per_token:  0.0000060
+      output_cost_per_token: 0.0002250
 
-  - model_name: ollama/qwen3.5-27b-q8:latest
+  - model_name: claude-sonnet4.6
     litellm_params:
-      model: ollama/qwen3.5-27b-q8:latest
-      api_base: os.environ/OLLAMA_API_BASE
+      model: claude-sonnet-4-6
+      api_base: os.environ/MINDRACODE_API_BASE
+      api_key: os.environ/SSCT_API_CLAUDE_AWS
     model_info:
-      input_cost_per_token: 0.0000008
-      output_cost_per_token: 0.0000024
+      input_cost_per_token:  0.0000010
+      output_cost_per_token: 0.0000090
+  
+  - model_name: gemini-3-pro
+    litellm_params:
+      model: claude-sonnet-4-6
+      api_base: os.environ/MINDRACODE_API_BASE
+      api_key: os.environ/SSCT_API_GEMINI
+    model_info:
+      input_cost_per_token:  0.0000040
+      output_cost_per_token: 0.0000180
 
-  - model_name: ollama/qwen3.5:4b
+  - model_name: gemini-3-flash
     litellm_params:
-      model: ollama/qwen3.5:4b
-      api_base: os.environ/OLLAMA_API_BASE
+      model: claude-sonnet-4-6
+      api_base: os.environ/MINDRACODE_API_BASE
+      api_key: os.environ/SSCT_API_GEMINI
     model_info:
-      input_cost_per_token: 0.0000001
-      output_cost_per_token: 0.0000003
+      input_cost_per_token:  0.0000040
+      output_cost_per_token: 0.0000180
 
-  # --- Qwen 3 Coder ---
-  - model_name: ollama/qwen3-coder-next:latest
-    litellm_params:
-      model: ollama/qwen3-coder-next:latest
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.0000012
-      output_cost_per_token: 0.0000036
-
-  - model_name: ollama/qwen3-coder:latest
-    litellm_params:
-      model: ollama/qwen3-coder:latest
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.0000006
-      output_cost_per_token: 0.0000018
-
-  # --- Qwen 2.5 Coder ---
-  - model_name: ollama/qwen2.5-coder:3b
-    litellm_params:
-      model: ollama/qwen2.5-coder:3b
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.00000005
-      output_cost_per_token: 0.00000015
-
-  - model_name: ollama/qwen2.5-coder:latest
-    litellm_params:
-      model: ollama/qwen2.5-coder:latest
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.0000002
-      output_cost_per_token: 0.0000006
-
-  - model_name: ollama/qwen2.5-coder:14b
-    litellm_params:
-      model: ollama/qwen2.5-coder:14b
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.0000004
-      output_cost_per_token: 0.0000012
-
-  # --- Gemma ---
-  - model_name: ollama/gemma4:31b
-    litellm_params:
-      model: ollama/gemma4:31b
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.0000008
-      output_cost_per_token: 0.0000024
-
-  - model_name: ollama/gemma3:27b
-    litellm_params:
-      model: ollama/gemma3:27b
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.0000007
-      output_cost_per_token: 0.000002
-
-  # --- Qwen 3 ---
-  - model_name: ollama/qwen3:4b
-    litellm_params:
-      model: ollama/qwen3:4b
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.0000001
-      output_cost_per_token: 0.0000003
-
-  # --- Llama ---
-  - model_name: ollama/llama3.1:8b-instruct-q8_0
-    litellm_params:
-      model: ollama/llama3.1:8b-instruct-q8_0
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.0000003
-      output_cost_per_token: 0.0000009
-
-  - model_name: ollama/llama3.1:70b
-    litellm_params:
-      model: ollama/llama3.1:70b
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.000001
-      output_cost_per_token: 0.000003
-
-  # --- Custom finetunes ---
-  - model_name: ollama/anig-new:latest
-    litellm_params:
-      model: ollama/anig-new:latest
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.000001
-      output_cost_per_token: 0.000003
-
-  - model_name: ollama/llama3.1-70b-anig-new:latest
-    litellm_params:
-      model: ollama/llama3.1-70b-anig-new:latest
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.000001
-      output_cost_per_token: 0.000003
-
-  # --- Devstral ---
-  - model_name: ollama/devstral:latest
-    litellm_params:
-      model: ollama/devstral:latest
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.0000004
-      output_cost_per_token: 0.0000012
-
-  # --- Embedding ---
-  - model_name: ollama/nomic-embed-text:latest
-    litellm_params:
-      model: ollama/nomic-embed-text:latest
-      api_base: os.environ/OLLAMA_API_BASE
-    model_info:
-      input_cost_per_token: 0.00000001
-      output_cost_per_token: 0
 
   ## --- Cloud providers (uncomment and add keys to .env) ---
   # - model_name: gpt-4o
