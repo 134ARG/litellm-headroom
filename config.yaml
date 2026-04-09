@@ -29,7 +29,7 @@ model_list:
       api_key: os.environ/SSCT_API_CLAUDE_AWS
     model_info:
       input_cost_per_token:  0.0000060
-      output_cost_per_token: 0.0002250
+      output_cost_per_token: 0.0000225
 
   - model_name: claude-sonnet4.6
     litellm_params:
@@ -39,11 +39,11 @@ model_list:
     model_info:
       input_cost_per_token:  0.0000010
       output_cost_per_token: 0.0000090
-  
+
   - model_name: gemini-3-pro
     litellm_params:
-      model: claude-sonnet-4-6
-      api_base: os.environ/MINDRACODE_API_BASE
+      model: openai/gemini-3.1-pro-preview
+      api_base: os.environ/MINDRACODE_API_BASE_V1
       api_key: os.environ/SSCT_API_GEMINI
     model_info:
       input_cost_per_token:  0.0000040
@@ -51,12 +51,23 @@ model_list:
 
   - model_name: gemini-3-flash
     litellm_params:
-      model: claude-sonnet-4-6
-      api_base: os.environ/MINDRACODE_API_BASE
+      model: openai/gemini-3-flash-preview
+      api_base: os.environ/MINDRACODE_API_BASE_V1
       api_key: os.environ/SSCT_API_GEMINI
     model_info:
       input_cost_per_token:  0.0000040
       output_cost_per_token: 0.0000180
+
+  # - model_name: GLM-5.1
+  #   litellm_params:
+  #     model: openai/GLM-5.1
+  #     api_base: os.environ/SILICONFLOW_API_BASE
+  #     api_key: os.environ/SILICONFLOW_API_KEY
+  #     extra_body:
+  #       model: Pro/zai-org/GLM-5.1
+  #   model_info:
+  #     input_cost_per_token:  0.0000040
+  #     output_cost_per_token: 0.0000180
 
 
   ## --- Cloud providers (uncomment and add keys to .env) ---
