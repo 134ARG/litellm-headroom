@@ -4,24 +4,83 @@
 
 model_list:
   # --- https://mindracode.com/ ---  
+
+  # -----  Sonnet 4.5 -----------
+  # # 0.2x
+  # - model_name: claude-sonnet4.5
+  #   litellm_params:
+  #     model: claude-sonnet-4-5-20250929
+  #     api_base: os.environ/MINDRACODE_API_BASE
+  #     api_key: os.environ/SSCT_API_CLAUDE_KIRO
+  #   model_info:
+  #     input_cost_per_token:  0.0000006
+  #     output_cost_per_token: 0.0000030
+
+  # 0.6x
   - model_name: claude-sonnet4.5
     litellm_params:
       model: claude-sonnet-4-5-20250929
       api_base: os.environ/MINDRACODE_API_BASE
-      api_key: os.environ/SSCT_API_CLAUDE_KIRO
+      api_key: os.environ/SSCT_API_CLAUDE_AWS
     model_info:
-      input_cost_per_token:  0.0000006
-      output_cost_per_token: 0.0000030
+      input_cost_per_token:  0.0000018
+      output_cost_per_token: 0.0000090
 
+  # # 1x
+  # - model_name: claude-sonnet4.5
+  #   litellm_params:
+  #     model: claude-sonnet-4-5-20250929
+  #     api_base: os.environ/MINDRACODE_API_BASE
+  #     api_key: os.environ/SSCT_API_DEFAULT
+  #   model_info:
+  #     input_cost_per_token:  0.0000030
+  #     output_cost_per_token: 0.0000150
+
+
+  # -----  Opus 4.5 -----------
+  # # 0.2x
+  # - model_name: claude-opus4.5
+  #   litellm_params:
+  #     model: claude-opus-4-5-20251101
+  #     api_base: os.environ/MINDRACODE_API_BASE
+  #     api_key: os.environ/SSCT_API_CLAUDE_KIRO
+  #   model_info:
+  #     input_cost_per_token:  0.0000010
+  #     output_cost_per_token: 0.0000050
+
+  # 0.6x
   - model_name: claude-opus4.5
     litellm_params:
       model: claude-opus-4-5-20251101
       api_base: os.environ/MINDRACODE_API_BASE
-      api_key: os.environ/SSCT_API_CLAUDE_KIRO
+      api_key: os.environ/SSCT_API_CLAUDE_AWS
     model_info:
-      input_cost_per_token:  0.0000010
-      output_cost_per_token: 0.0000050
+      input_cost_per_token:  0.0000030
+      output_cost_per_token: 0.0000150
 
+  # # 1x
+  # - model_name: claude-opus4.5
+  #   litellm_params:
+  #     model: claude-opus-4-5-20251101
+  #     api_base: os.environ/MINDRACODE_API_BASE # 1x
+  #     api_key: os.environ/SSCT_API_DEFAULT
+  #   model_info:
+  #     input_cost_per_token:  0.0000050
+  #     output_cost_per_token: 0.0000250
+
+
+  # -----  Opus 4.6 -----------
+  # # 0.2x
+  # - model_name: claude-opus4.6
+  #   litellm_params:
+  #     model: claude-opus-4-6
+  #     api_base: os.environ/MINDRACODE_API_BASE
+  #     api_key: os.environ/SSCT_API_CLAUDE_KIRO
+  #   model_info:
+  #     input_cost_per_token:  0.0000020
+  #     output_cost_per_token: 0.0000075
+
+  # 0.6x
   - model_name: claude-opus4.6
     litellm_params:
       model: claude-opus-4-6
@@ -31,20 +90,53 @@ model_list:
       input_cost_per_token:  0.0000060
       output_cost_per_token: 0.0000225
 
+  # # 1x
+  # - model_name: claude-opus4.6
+  #   litellm_params:
+  #     model: claude-opus-4-6
+  #     api_base: os.environ/MINDRACODE_API_BASE
+  #     api_key: os.environ/SSCT_API_DEFAULT
+  #   model_info:
+  #     input_cost_per_token:  0.0000100
+  #     output_cost_per_token: 0.0000375
+
+  # -----  Sonnet 4.6 -----------
+  # 0.2x
   - model_name: claude-sonnet4.6
     litellm_params:
       model: claude-sonnet-4-6
       api_base: os.environ/MINDRACODE_API_BASE
-      api_key: os.environ/SSCT_API_CLAUDE_AWS
+      api_key: os.environ/SSCT_API_CLAUDE_KIRO
     model_info:
-      input_cost_per_token:  0.0000010
-      output_cost_per_token: 0.0000090
+      input_cost_per_token:  0.0000006
+      output_cost_per_token: 0.0000030
 
+  # # 0.6x
+  # - model_name: claude-sonnet4.6
+  #   litellm_params:
+  #     model: claude-sonnet-4-6
+  #     api_base: os.environ/MINDRACODE_API_BASE
+  #     api_key: os.environ/SSCT_API_CLAUDE_AWS
+  #   model_info:
+  #     input_cost_per_token:  0.0000018
+  #     output_cost_per_token: 0.0000090
+
+  # # 1x
+  # - model_name: claude-sonnet4.6
+  #   litellm_params:
+  #     model: claude-sonnet-4-6
+  #     api_base: os.environ/MINDRACODE_API_BASE
+  #     api_key: os.environ/SSCT_API_DEFAULT
+  #   model_info:
+  #     input_cost_per_token:  0.0000030
+  #     output_cost_per_token: 0.0000150
+
+  # -----  Gemini 3 Pro -----------
   - model_name: gemini-3-pro
     litellm_params:
       model: openai/gemini-3.1-pro-preview
       api_base: os.environ/MINDRACODE_API_BASE_V1
-      api_key: os.environ/SSCT_API_GEMINI
+      api_key: os.environ/SSCT_API_DEFAULT
     model_info:
       input_cost_per_token:  0.0000040
       output_cost_per_token: 0.0000180
@@ -53,21 +145,33 @@ model_list:
     litellm_params:
       model: openai/gemini-3-flash-preview
       api_base: os.environ/MINDRACODE_API_BASE_V1
-      api_key: os.environ/SSCT_API_GEMINI
+      api_key: os.environ/SSCT_API_DEFAULT
     model_info:
-      input_cost_per_token:  0.0000040
-      output_cost_per_token: 0.0000180
+      input_cost_per_token:  0.0000005
+      output_cost_per_token: 0.0000030
 
-  # - model_name: GLM-5.1
-  #   litellm_params:
-  #     model: openai/GLM-5.1
-  #     api_base: os.environ/SILICONFLOW_API_BASE
-  #     api_key: os.environ/SILICONFLOW_API_KEY
-  #     extra_body:
-  #       model: Pro/zai-org/GLM-5.1
-  #   model_info:
-  #     input_cost_per_token:  0.0000040
-  #     output_cost_per_token: 0.0000180
+  # -----  GLM -----------
+  - model_name: GLM-5.1
+    litellm_params:
+      model: openai/GLM-5.1
+      api_base: os.environ/ZHIPU_API_BASE
+      api_key: os.environ/ZHIPU_API_KEY
+      extra_body:
+        model: glm-5.1
+    model_info:
+      input_cost_per_token:  0.0000012
+      output_cost_per_token: 0.0000043
+
+  - model_name: GLM-4.5-air
+    litellm_params:
+      model: openai/GLM-4.5-air
+      api_base: os.environ/ZHIPU_API_BASE
+      api_key: os.environ/ZHIPU_API_KEY
+      extra_body:
+        model: glm-4.5-air
+    model_info:
+      input_cost_per_token:  0.0000002
+      output_cost_per_token: 0.0000012
 
 
   ## --- Cloud providers (uncomment and add keys to .env) ---
