@@ -15,6 +15,10 @@ model_list:
   #   model_info:
   #     input_cost_per_token:  0.0000006
   #     output_cost_per_token: 0.0000030
+  #     # cache create: 1.25 * input
+  #     cache_creation_input_token_cost: 0.00000075
+  #     # cache hit: 0.1 * input
+  #     cache_read_input_token_cost: 0.00000006
 
   # 0.6x
   - model_name: claude-sonnet4.5
@@ -25,6 +29,10 @@ model_list:
     model_info:
       input_cost_per_token:  0.0000018
       output_cost_per_token: 0.0000090
+      # cache create: 1.25 * input
+      cache_creation_input_token_cost: 0.00000225
+      # cache hit: 0.1 * input
+      cache_read_input_token_cost: 0.00000018
 
   # # 1x
   # - model_name: claude-sonnet4.5
@@ -35,6 +43,10 @@ model_list:
   #   model_info:
   #     input_cost_per_token:  0.0000030
   #     output_cost_per_token: 0.0000150
+  #     # cache create: 1.25 * input
+  #     cache_creation_input_token_cost: 0.00000375
+  #     # cache hit: 0.1 * input
+  #     cache_read_input_token_cost: 0.00000030
 
 
   # -----  Opus 4.5 -----------
@@ -47,6 +59,10 @@ model_list:
   #   model_info:
   #     input_cost_per_token:  0.0000010
   #     output_cost_per_token: 0.0000050
+  #     # cache create: 1.25 * input
+  #     cache_creation_input_token_cost: 0.00000125
+  #     # cache hit: 0.1 * input
+  #     cache_read_input_token_cost: 0.00000010
 
   # 0.6x
   - model_name: claude-opus4.5
@@ -57,6 +73,10 @@ model_list:
     model_info:
       input_cost_per_token:  0.0000030
       output_cost_per_token: 0.0000150
+      # cache create: 1.25 * input
+      cache_creation_input_token_cost: 0.00000375
+      # cache hit: 0.1 * input
+      cache_read_input_token_cost: 0.00000030
 
   # # 1x
   # - model_name: claude-opus4.5
@@ -67,6 +87,10 @@ model_list:
   #   model_info:
   #     input_cost_per_token:  0.0000050
   #     output_cost_per_token: 0.0000250
+  #     # cache create: 1.25 * input
+  #     cache_creation_input_token_cost: 0.00000625
+  #     # cache hit: 0.1 * input
+  #     cache_read_input_token_cost: 0.00000050
 
 
   # -----  Opus 4.6 -----------
@@ -77,8 +101,16 @@ model_list:
   #     api_base: os.environ/MINDRACODE_API_BASE
   #     api_key: os.environ/SSCT_API_CLAUDE_KIRO
   #   model_info:
-  #     input_cost_per_token:  0.0000020
-  #     output_cost_per_token: 0.0000075
+  #     input_cost_per_token:  0.0000010
+  #     output_cost_per_token: 0.0000050
+  #     input_cost_per_token_above_200k_tokens: 0.0000020
+  #     output_cost_per_token_above_200k_tokens: 0.0000075
+  #     # cache create: 1.25 * input
+  #     cache_creation_input_token_cost: 0.00000125
+  #     cache_creation_input_token_cost_above_200k_tokens: 0.00000250
+  #     # cache hit: 0.1 * input
+  #     cache_read_input_token_cost: 0.00000010
+  #     cache_read_input_token_cost_above_200k_tokens: 0.00000020
 
   # 0.6x
   - model_name: claude-opus4.6
@@ -87,8 +119,17 @@ model_list:
       api_base: os.environ/MINDRACODE_API_BASE
       api_key: os.environ/SSCT_API_CLAUDE_AWS
     model_info:
-      input_cost_per_token:  0.0000060
-      output_cost_per_token: 0.0000225
+      input_cost_per_token:  0.0000030
+      output_cost_per_token: 0.0000150
+      input_cost_per_token_above_200k_tokens: 0.0000060
+      output_cost_per_token_above_200k_tokens: 0.0000225
+      # cache create: 1.25 * input
+      cache_creation_input_token_cost: 0.00000375
+      cache_creation_input_token_cost_above_200k_tokens: 0.00000750
+      # cache hit: 0.1 * input
+      cache_read_input_token_cost: 0.00000030
+      cache_read_input_token_cost_above_200k_tokens: 0.00000060
+
 
   # # 1x
   # - model_name: claude-opus4.6
@@ -97,8 +138,16 @@ model_list:
   #     api_base: os.environ/MINDRACODE_API_BASE
   #     api_key: os.environ/SSCT_API_DEFAULT
   #   model_info:
-  #     input_cost_per_token:  0.0000100
-  #     output_cost_per_token: 0.0000375
+  #     input_cost_per_token:  0.0000050
+  #     output_cost_per_token: 0.0000250
+  #     input_cost_per_token_above_200k_tokens: 0.0000100
+  #     output_cost_per_token_above_200k_tokens: 0.0000375
+  #     # cache create: 1.25 * input
+  #     cache_creation_input_token_cost: 0.00000625
+  #     cache_creation_input_token_cost_above_200k_tokens: 0.0000125
+  #     # cache hit: 0.1 * input
+  #     cache_read_input_token_cost: 0.00000050
+  #     cache_read_input_token_cost_above_200k_tokens: 0.0000010
 
   # -----  Sonnet 4.6 -----------
   # 0.2x
@@ -110,6 +159,10 @@ model_list:
     model_info:
       input_cost_per_token:  0.0000006
       output_cost_per_token: 0.0000030
+      # cache create: 1.25 * input
+      cache_creation_input_token_cost: 0.00000075
+      # cache hit: 0.1 * input
+      cache_read_input_token_cost: 0.00000006
 
   # # 0.6x
   # - model_name: claude-sonnet4.6
@@ -120,6 +173,10 @@ model_list:
   #   model_info:
   #     input_cost_per_token:  0.0000018
   #     output_cost_per_token: 0.0000090
+  #     # cache create: 1.25 * input
+  #     cache_creation_input_token_cost: 0.00000225
+  #     # cache hit: 0.1 * input
+  #     cache_read_input_token_cost: 0.00000018
 
   # # 1x
   # - model_name: claude-sonnet4.6
@@ -130,6 +187,10 @@ model_list:
   #   model_info:
   #     input_cost_per_token:  0.0000030
   #     output_cost_per_token: 0.0000150
+  #     # cache create: 1.25 * input
+  #     cache_creation_input_token_cost: 0.00000375
+  #     # cache hit: 0.1 * input
+  #     cache_read_input_token_cost: 0.00000030
 
   # -----  Gemini 3 Pro -----------
   - model_name: gemini-3-pro
@@ -138,8 +199,16 @@ model_list:
       api_base: os.environ/MINDRACODE_API_BASE_V1
       api_key: os.environ/SSCT_API_DEFAULT
     model_info:
-      input_cost_per_token:  0.0000040
-      output_cost_per_token: 0.0000180
+      input_cost_per_token:  0.0000020
+      output_cost_per_token: 0.0000120
+      input_cost_per_token_above_200k_tokens: 0.0000040
+      output_cost_per_token_above_200k_tokens: 0.0000180
+      # cache create: 1.25 * input
+      cache_creation_input_token_cost: 0.00000250
+      cache_creation_input_token_cost_above_200k_tokens: 0.00000500
+      # cache hit: 0.1 * input
+      cache_read_input_token_cost: 0.00000020
+      cache_read_input_token_cost_above_200k_tokens: 0.00000040
 
   - model_name: gemini-3-flash
     litellm_params:
@@ -149,11 +218,15 @@ model_list:
     model_info:
       input_cost_per_token:  0.0000005
       output_cost_per_token: 0.0000030
+      # cache create: 1.25 * input
+      cache_creation_input_token_cost: 0.000000625
+      # cache hit: 0.1 * input
+      cache_read_input_token_cost: 0.00000005
 
   # -----  GLM -----------
   - model_name: GLM-5.1
     litellm_params:
-      model: openai/GLM-5.1
+      model: zai/GLM-5.1
       api_base: os.environ/ZHIPU_API_BASE
       api_key: os.environ/ZHIPU_API_KEY
       extra_body:
@@ -161,10 +234,14 @@ model_list:
     model_info:
       input_cost_per_token:  0.0000012
       output_cost_per_token: 0.0000043
+      # cache create: 1.25 * input
+      cache_creation_input_token_cost: 0.00000150
+      # cache hit: 0.1 * input
+      cache_read_input_token_cost: 0.00000012
 
   - model_name: GLM-4.5-air
     litellm_params:
-      model: openai/GLM-4.5-air
+      model: zai/GLM-4.5-air
       api_base: os.environ/ZHIPU_API_BASE
       api_key: os.environ/ZHIPU_API_KEY
       extra_body:
@@ -172,6 +249,10 @@ model_list:
     model_info:
       input_cost_per_token:  0.0000002
       output_cost_per_token: 0.0000012
+      # cache create: 1.25 * input
+      cache_creation_input_token_cost: 0.00000025
+      # cache hit: 0.1 * input
+      cache_read_input_token_cost: 0.00000002
 
 
   ## --- Cloud providers (uncomment and add keys to .env) ---
