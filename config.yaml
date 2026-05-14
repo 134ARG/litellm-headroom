@@ -266,5 +266,82 @@ model_list:
   #     model: anthropic/claude-sonnet-4-20250514
   #     api_key: os.environ/ANTHROPIC_API_KEY
 
+    # -----  OpenAI official API pricing -----------
+  # Source: OpenAI API pricing, Standard tier. Prices are converted from USD / 1M tokens to USD / token.
+  # Note: gpt-5.2 is not listed on the current official OpenAI API pricing page, so it is left commented out.
+
+  # - model_name: gpt-5.2
+  #   litellm_params:
+  #     model: openai/gpt-5.2
+  #     api_key: os.environ/OPENAI_API_KEY
+  #   model_info:
+  #     # TODO: Not available on current official OpenAI API pricing page.
+  #     input_cost_per_token:  null
+  #     output_cost_per_token: null
+  #     cache_read_input_token_cost: null
+
+  - model_name: gpt-5.3-codex
+    litellm_params:
+      model: openai/gpt-5.3-codex
+      api_base: os.environ/OPENAI_API_BASE
+      api_key: os.environ/OPENAI_API_KEY
+    model_info:
+      input_cost_per_token:  0.00000175
+      output_cost_per_token: 0.00001400
+      cache_read_input_token_cost: 0.000000175
+
+  - model_name: gpt-5.4
+    litellm_params:
+      model: openai/gpt-5.4
+      api_base: os.environ/OPENAI_API_BASE
+      api_key: os.environ/OPENAI_API_KEY
+    model_info:
+      input_cost_per_token:  0.00000250
+      output_cost_per_token: 0.00001500
+      cache_read_input_token_cost: 0.00000025
+      # Official long-context pricing applies above 270K tokens.
+      input_cost_per_token_above_270k_tokens:  0.00000500
+      output_cost_per_token_above_270k_tokens: 0.00002250
+      cache_read_input_token_cost_above_270k_tokens: 0.00000050
+
+  - model_name: gpt-5.4-mini
+    litellm_params:
+      model: openai/gpt-5.4-mini
+      api_base: os.environ/OPENAI_API_BASE
+      api_key: os.environ/OPENAI_API_KEY
+    model_info:
+      input_cost_per_token:  0.00000075
+      output_cost_per_token: 0.00000450
+      cache_read_input_token_cost: 0.000000075
+
+  - model_name: gpt-5.5
+    litellm_params:
+      model: openai/gpt-5.5
+      api_base: os.environ/OPENAI_API_BASE
+      api_key: os.environ/OPENAI_API_KEY
+    model_info:
+      input_cost_per_token:  0.00000500
+      output_cost_per_token: 0.00003000
+      cache_read_input_token_cost: 0.00000050
+      # Official long-context pricing applies above 270K tokens.
+      input_cost_per_token_above_270k_tokens:  0.00001000
+      output_cost_per_token_above_270k_tokens: 0.00004500
+      cache_read_input_token_cost_above_270k_tokens: 0.00000100
+
+  - model_name: gpt-image-2
+    litellm_params:
+      model: openai/gpt-image-2
+      api_base: os.environ/OPENAI_API_BASE
+      api_key: os.environ/OPENAI_API_KEY
+    model_info:
+      # Text input: $5.00 / 1M tokens; cached text input: $1.25 / 1M tokens
+      # Image input: $8.00 / 1M tokens; cached image input: $2.00 / 1M tokens
+      # Image output: $30.00 / 1M tokens
+      input_cost_per_token:  0.00000500
+      output_cost_per_token: 0.00003000
+      cache_read_input_token_cost: 0.00000125
+      image_input_cost_per_token: 0.00000800
+      image_cache_read_input_token_cost: 0.00000200
+
 general_settings:
   master_key: os.environ/LITELLM_MASTER_KEY
