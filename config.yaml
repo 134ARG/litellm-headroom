@@ -2,6 +2,9 @@
 # Edit this file to add/remove models and providers.
 # Docs: https://docs.litellm.ai/docs/proxy/custom_pricing
 
+litellm_settings:
+  drop_params: true
+
 model_list:
   # --- https://mindracode.com/ ---  
 
@@ -283,8 +286,8 @@ model_list:
   - model_name: gpt-5.3-codex
     litellm_params:
       model: openai/gpt-5.3-codex
-      api_base: os.environ/OPENAI_API_BASE
-      api_key: os.environ/OPENAI_API_KEY
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
     model_info:
       input_cost_per_token:  0.00000175
       output_cost_per_token: 0.00001400
@@ -293,8 +296,8 @@ model_list:
   - model_name: gpt-5.4
     litellm_params:
       model: openai/gpt-5.4
-      api_base: os.environ/OPENAI_API_BASE
-      api_key: os.environ/OPENAI_API_KEY
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
     model_info:
       input_cost_per_token:  0.00000250
       output_cost_per_token: 0.00001500
@@ -307,8 +310,8 @@ model_list:
   - model_name: gpt-5.4-mini
     litellm_params:
       model: openai/gpt-5.4-mini
-      api_base: os.environ/OPENAI_API_BASE
-      api_key: os.environ/OPENAI_API_KEY
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
     model_info:
       input_cost_per_token:  0.00000075
       output_cost_per_token: 0.00000450
@@ -317,8 +320,22 @@ model_list:
   - model_name: gpt-5.5
     litellm_params:
       model: openai/gpt-5.5
-      api_base: os.environ/OPENAI_API_BASE
-      api_key: os.environ/OPENAI_API_KEY
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      input_cost_per_token:  0.00000500
+      output_cost_per_token: 0.00003000
+      cache_read_input_token_cost: 0.00000050
+      # Official long-context pricing applies above 270K tokens.
+      input_cost_per_token_above_270k_tokens:  0.00001000
+      output_cost_per_token_above_270k_tokens: 0.00004500
+      cache_read_input_token_cost_above_270k_tokens: 0.00000100
+
+  - model_name: gpt-5.2
+    litellm_params:
+      model: openai/gpt-5.5
+      api_base: os.environ/CXM_API_BASE
+      api_key: os.environ/CXM_API_KEY
     model_info:
       input_cost_per_token:  0.00000500
       output_cost_per_token: 0.00003000
@@ -331,8 +348,8 @@ model_list:
   - model_name: gpt-image-2
     litellm_params:
       model: openai/gpt-image-2
-      api_base: os.environ/OPENAI_API_BASE
-      api_key: os.environ/OPENAI_API_KEY
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
     model_info:
       # Text input: $5.00 / 1M tokens; cached text input: $1.25 / 1M tokens
       # Image input: $8.00 / 1M tokens; cached image input: $2.00 / 1M tokens
@@ -342,6 +359,111 @@ model_list:
       cache_read_input_token_cost: 0.00000125
       image_input_cost_per_token: 0.00000800
       image_cache_read_input_token_cost: 0.00000200
+
+  # -----  MiMo -----------
+  # Exchange rate: 1 USD = ¥6.8
+  # Original pricing: CNY / 1M tokens
+  # LiteLLM pricing: USD / token
+  #
+  # NOTE:
+  # - input_cost_per_token 使用“输入缓存未命中”价格
+  # - cache_read_input_token_cost 使用“输入命中缓存”价格
+  # - cache_creation_input_token_cost 暂按“输入缓存未命中”价格填写
+
+  - model_name: mimo-v2.5-pro
+    litellm_params:
+      model: openai/mimo-v2.5-pro
+      api_base: os.environ/MIMO_API_BASE
+      api_key: os.environ/MIMO_API_KEY
+    model_info:
+      max_input_tokens: 1048576
+      # <= 256K: ¥7.00 / 1M => $1.029411765 / 1M
+      input_cost_per_token:  0.000001029411765
+      # <= 256K: ¥21.00 / 1M => $3.088235294 / 1M
+      output_cost_per_token: 0.000003088235294
+      cache_creation_input_token_cost: 0.000001029411765
+      # <= 256K cache hit: ¥1.40 / 1M => $0.205882353 / 1M
+      cache_read_input_token_cost:     0.000000205882353
+
+      # 256K - 1M: ¥14.00 / 1M => $2.058823529 / 1M
+      input_cost_per_token_above_256k_tokens:  0.000002058823529
+      # 256K - 1M: ¥42.00 / 1M => $6.176470588 / 1M
+      output_cost_per_token_above_256k_tokens: 0.000006176470588
+      cache_creation_input_token_cost_above_256k_tokens: 0.000002058823529
+      # 256K - 1M cache hit: ¥2.80 / 1M => $0.411764706 / 1M
+      cache_read_input_token_cost_above_256k_tokens:     0.000000411764706
+
+  - model_name: mimo-v2-pro
+    litellm_params:
+      model: openai/mimo-v2-pro
+      api_base: os.environ/MIMO_API_BASE
+      api_key: os.environ/MIMO_API_KEY
+    model_info:
+      max_input_tokens: 1048576
+      input_cost_per_token:  0.000001029411765
+      output_cost_per_token: 0.000003088235294
+      cache_creation_input_token_cost: 0.000001029411765
+      cache_read_input_token_cost:     0.000000205882353
+
+      input_cost_per_token_above_256k_tokens:  0.000002058823529
+      output_cost_per_token_above_256k_tokens: 0.000006176470588
+      cache_creation_input_token_cost_above_256k_tokens: 0.000002058823529
+      cache_read_input_token_cost_above_256k_tokens:     0.000000411764706
+
+  - model_name: mimo-v2.5
+    litellm_params:
+      model: openai/mimo-v2.5
+      api_base: os.environ/MIMO_API_BASE
+      api_key: os.environ/MIMO_API_KEY
+    model_info:
+      max_input_tokens: 1048576
+      # <= 256K: ¥2.80 / 1M => $0.411764706 / 1M
+      input_cost_per_token:  0.000000411764706
+      # <= 256K: ¥14.00 / 1M => $2.058823529 / 1M
+      output_cost_per_token: 0.000002058823529
+      cache_creation_input_token_cost: 0.000000411764706
+      # <= 256K cache hit: ¥0.56 / 1M => $0.082352941 / 1M
+      cache_read_input_token_cost:     0.000000082352941
+
+      # 256K - 1M: ¥5.60 / 1M => $0.823529412 / 1M
+      input_cost_per_token_above_256k_tokens:  0.000000823529412
+      # 256K - 1M: ¥28.00 / 1M => $4.117647059 / 1M
+      output_cost_per_token_above_256k_tokens: 0.000004117647059
+      cache_creation_input_token_cost_above_256k_tokens: 0.000000823529412
+      # 256K - 1M cache hit: ¥1.12 / 1M => $0.164705882 / 1M
+      cache_read_input_token_cost_above_256k_tokens:     0.000000164705882
+
+  - model_name: mimo-v2-omni
+    litellm_params:
+      model: openai/mimo-v2-omni
+      api_base: os.environ/MIMO_API_BASE
+      api_key: os.environ/MIMO_API_KEY
+    model_info:
+      max_input_tokens: 262144
+      # <= 256K only
+      # ¥2.80 / 1M => $0.411764706 / 1M
+      input_cost_per_token:  0.000000411764706
+      # ¥14.00 / 1M => $2.058823529 / 1M
+      output_cost_per_token: 0.000002058823529
+      cache_creation_input_token_cost: 0.000000411764706
+      # cache hit: ¥0.56 / 1M => $0.082352941 / 1M
+      cache_read_input_token_cost:     0.000000082352941
+
+  - model_name: mimo-v2-flash
+    litellm_params:
+      model: openai/mimo-v2-flash
+      api_base: os.environ/MIMO_API_BASE
+      api_key: os.environ/MIMO_API_KEY
+    model_info:
+      max_input_tokens: 262144
+      # <= 256K only
+      # ¥0.70 / 1M => $0.102941176 / 1M
+      input_cost_per_token:  0.000000102941176
+      # ¥2.10 / 1M => $0.308823529 / 1M
+      output_cost_per_token: 0.000000308823529
+      cache_creation_input_token_cost: 0.000000102941176
+      # cache hit: ¥0.07 / 1M => $0.010294118 / 1M
+      cache_read_input_token_cost:     0.000000010294118
 
 general_settings:
   master_key: os.environ/LITELLM_MASTER_KEY
