@@ -6,194 +6,140 @@ litellm_settings:
   drop_params: true
 
 model_list:
-  # --- https://mindracode.com/ ---  
 
-  # -----  Sonnet 4.5 -----------
-  # # 0.2x
-  # - model_name: claude-sonnet4.5
-  #   litellm_params:
-  #     model: claude-sonnet-4-5-20250929
-  #     api_base: os.environ/MINDRACODE_API_BASE
-  #     api_key: os.environ/SSCT_API_CLAUDE_KIRO
-  #   model_info:
-  #     input_cost_per_token:  0.0000006
-  #     output_cost_per_token: 0.0000030
-  #     # cache create: 1.25 * input
-  #     cache_creation_input_token_cost: 0.00000075
-  #     # cache hit: 0.1 * input
-  #     cache_read_input_token_cost: 0.00000006
+  # -----  Anthropic official API pricing -----------
+  # Source: Anthropic Claude API pricing, first-party Claude API standard/global pricing.
+  # Prices are converted from USD / 1M tokens to USD / token.
+  # Batch API, Fast mode, and data residency pricing modifiers are not modeled here.
+  # Note: cache_creation_input_token_cost uses Anthropic's 5-minute cache write price.
+  # Anthropic's 1-hour cache write price is listed in comments because LiteLLM has one generic cache creation field.
 
-  # 0.6x
-  - model_name: claude-sonnet4.5
+  - model_name: claude-fable-5
     litellm_params:
-      model: claude-sonnet-4-5-20250929
-      api_base: os.environ/MINDRACODE_API_BASE
-      api_key: os.environ/SSCT_API_CLAUDE_AWS
+      model: anthropic/mimo-v2.5-pro
+      api_base: os.environ/MIMO_API_BASE
+      api_key: os.environ/MIMO_API_KEY
     model_info:
-      input_cost_per_token:  0.0000018
-      output_cost_per_token: 0.0000090
-      # cache create: 1.25 * input
-      cache_creation_input_token_cost: 0.00000225
-      # cache hit: 0.1 * input
-      cache_read_input_token_cost: 0.00000018
+      # Input: $10.00 / 1M; output: $50.00 / 1M
+      input_cost_per_token:  0.00001000
+      output_cost_per_token: 0.00005000
+      # 5m cache write: $12.50 / 1M; 1h cache write: $20.00 / 1M
+      cache_creation_input_token_cost: 0.00001250
+      # Cache hit: $1.00 / 1M
+      cache_read_input_token_cost:     0.00000100
 
-  # # 1x
-  # - model_name: claude-sonnet4.5
+  # Claude Mythos 5 is limited availability; uncomment if your Anthropic account is approved.
+  # - model_name: claude-mythos-5
   #   litellm_params:
-  #     model: claude-sonnet-4-5-20250929
-  #     api_base: os.environ/MINDRACODE_API_BASE
-  #     api_key: os.environ/SSCT_API_DEFAULT
+  #     model: anthropic/claude-mythos-5
+  #     api_base: os.environ/CPA_API_BASE
+  #     api_key: os.environ/CPA_API_KEY
   #   model_info:
-  #     input_cost_per_token:  0.0000030
-  #     output_cost_per_token: 0.0000150
-  #     # cache create: 1.25 * input
-  #     cache_creation_input_token_cost: 0.00000375
-  #     # cache hit: 0.1 * input
-  #     cache_read_input_token_cost: 0.00000030
+  #     # Input: $10.00 / 1M; output: $50.00 / 1M
+  #     input_cost_per_token:  0.00001000
+  #     output_cost_per_token: 0.00005000
+  #     # 5m cache write: $12.50 / 1M; 1h cache write: $20.00 / 1M
+  #     cache_creation_input_token_cost: 0.00001250
+  #     # Cache hit: $1.00 / 1M
+  #     cache_read_input_token_cost:     0.00000100
 
-
-  # -----  Opus 4.5 -----------
-  # # 0.2x
-  # - model_name: claude-opus4.5
-  #   litellm_params:
-  #     model: claude-opus-4-5-20251101
-  #     api_base: os.environ/MINDRACODE_API_BASE
-  #     api_key: os.environ/SSCT_API_CLAUDE_KIRO
-  #   model_info:
-  #     input_cost_per_token:  0.0000010
-  #     output_cost_per_token: 0.0000050
-  #     # cache create: 1.25 * input
-  #     cache_creation_input_token_cost: 0.00000125
-  #     # cache hit: 0.1 * input
-  #     cache_read_input_token_cost: 0.00000010
-
-  # 0.6x
-  - model_name: claude-opus4.5
+  - model_name: claude-opus-4-8
     litellm_params:
-      model: claude-opus-4-5-20251101
-      api_base: os.environ/MINDRACODE_API_BASE
-      api_key: os.environ/SSCT_API_CLAUDE_AWS
+      model: anthropic/claude-opus-4-8
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
     model_info:
-      input_cost_per_token:  0.0000030
-      output_cost_per_token: 0.0000150
-      # cache create: 1.25 * input
+      # Input: $5.00 / 1M; output: $25.00 / 1M
+      input_cost_per_token:  0.00000500
+      output_cost_per_token: 0.00002500
+      # 5m cache write: $6.25 / 1M; 1h cache write: $10.00 / 1M
+      cache_creation_input_token_cost: 0.00000625
+      # Cache hit: $0.50 / 1M
+      cache_read_input_token_cost:     0.00000050
+
+  - model_name: claude-opus-4-7
+    litellm_params:
+      model: anthropic/claude-opus-4-7
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      # Input: $5.00 / 1M; output: $25.00 / 1M
+      input_cost_per_token:  0.00000500
+      output_cost_per_token: 0.00002500
+      # 5m cache write: $6.25 / 1M; 1h cache write: $10.00 / 1M
+      cache_creation_input_token_cost: 0.00000625
+      # Cache hit: $0.50 / 1M
+      cache_read_input_token_cost:     0.00000050
+
+  - model_name: claude-opus-4-6
+    litellm_params:
+      model: anthropic/claude-opus-4-6
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      # Input: $5.00 / 1M; output: $25.00 / 1M
+      input_cost_per_token:  0.00000500
+      output_cost_per_token: 0.00002500
+      # 5m cache write: $6.25 / 1M; 1h cache write: $10.00 / 1M
+      cache_creation_input_token_cost: 0.00000625
+      # Cache hit: $0.50 / 1M
+      cache_read_input_token_cost:     0.00000050
+
+  - model_name: claude-opus-4-5
+    litellm_params:
+      model: anthropic/claude-opus-4-5-20251101
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      # Input: $5.00 / 1M; output: $25.00 / 1M
+      input_cost_per_token:  0.00000500
+      output_cost_per_token: 0.00002500
+      # 5m cache write: $6.25 / 1M; 1h cache write: $10.00 / 1M
+      cache_creation_input_token_cost: 0.00000625
+      # Cache hit: $0.50 / 1M
+      cache_read_input_token_cost:     0.00000050
+
+  - model_name: claude-sonnet-4-6
+    litellm_params:
+      model: anthropic/claude-sonnet-4-6
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      # Input: $3.00 / 1M; output: $15.00 / 1M
+      input_cost_per_token:  0.00000300
+      output_cost_per_token: 0.00001500
+      # 5m cache write: $3.75 / 1M; 1h cache write: $6.00 / 1M
       cache_creation_input_token_cost: 0.00000375
-      # cache hit: 0.1 * input
-      cache_read_input_token_cost: 0.00000030
+      # Cache hit: $0.30 / 1M
+      cache_read_input_token_cost:     0.00000030
 
-  # # 1x
-  # - model_name: claude-opus4.5
-  #   litellm_params:
-  #     model: claude-opus-4-5-20251101
-  #     api_base: os.environ/MINDRACODE_API_BASE # 1x
-  #     api_key: os.environ/SSCT_API_DEFAULT
-  #   model_info:
-  #     input_cost_per_token:  0.0000050
-  #     output_cost_per_token: 0.0000250
-  #     # cache create: 1.25 * input
-  #     cache_creation_input_token_cost: 0.00000625
-  #     # cache hit: 0.1 * input
-  #     cache_read_input_token_cost: 0.00000050
-
-
-  # -----  Opus 4.6 -----------
-  # # 0.2x
-  # - model_name: claude-opus4.6
-  #   litellm_params:
-  #     model: claude-opus-4-6
-  #     api_base: os.environ/MINDRACODE_API_BASE
-  #     api_key: os.environ/SSCT_API_CLAUDE_KIRO
-  #   model_info:
-  #     input_cost_per_token:  0.0000010
-  #     output_cost_per_token: 0.0000050
-  #     input_cost_per_token_above_200k_tokens: 0.0000020
-  #     output_cost_per_token_above_200k_tokens: 0.0000075
-  #     # cache create: 1.25 * input
-  #     cache_creation_input_token_cost: 0.00000125
-  #     cache_creation_input_token_cost_above_200k_tokens: 0.00000250
-  #     # cache hit: 0.1 * input
-  #     cache_read_input_token_cost: 0.00000010
-  #     cache_read_input_token_cost_above_200k_tokens: 0.00000020
-
-  # 0.6x
-  - model_name: claude-opus4.6
+  - model_name: claude-sonnet-4-5
     litellm_params:
-      model: claude-opus-4-6
-      api_base: os.environ/MINDRACODE_API_BASE
-      api_key: os.environ/SSCT_API_CLAUDE_AWS
+      model: anthropic/claude-sonnet-4-5-20250929
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
     model_info:
-      input_cost_per_token:  0.0000030
-      output_cost_per_token: 0.0000150
-      input_cost_per_token_above_200k_tokens: 0.0000060
-      output_cost_per_token_above_200k_tokens: 0.0000225
-      # cache create: 1.25 * input
+      # Input: $3.00 / 1M; output: $15.00 / 1M
+      input_cost_per_token:  0.00000300
+      output_cost_per_token: 0.00001500
+      # 5m cache write: $3.75 / 1M; 1h cache write: $6.00 / 1M
       cache_creation_input_token_cost: 0.00000375
-      cache_creation_input_token_cost_above_200k_tokens: 0.00000750
-      # cache hit: 0.1 * input
-      cache_read_input_token_cost: 0.00000030
-      cache_read_input_token_cost_above_200k_tokens: 0.00000060
+      # Cache hit: $0.30 / 1M
+      cache_read_input_token_cost:     0.00000030
 
-
-  # # 1x
-  # - model_name: claude-opus4.6
-  #   litellm_params:
-  #     model: claude-opus-4-6
-  #     api_base: os.environ/MINDRACODE_API_BASE
-  #     api_key: os.environ/SSCT_API_DEFAULT
-  #   model_info:
-  #     input_cost_per_token:  0.0000050
-  #     output_cost_per_token: 0.0000250
-  #     input_cost_per_token_above_200k_tokens: 0.0000100
-  #     output_cost_per_token_above_200k_tokens: 0.0000375
-  #     # cache create: 1.25 * input
-  #     cache_creation_input_token_cost: 0.00000625
-  #     cache_creation_input_token_cost_above_200k_tokens: 0.0000125
-  #     # cache hit: 0.1 * input
-  #     cache_read_input_token_cost: 0.00000050
-  #     cache_read_input_token_cost_above_200k_tokens: 0.0000010
-
-  # -----  Sonnet 4.6 -----------
-  # 0.2x
-  - model_name: claude-sonnet4.6
+  - model_name: claude-haiku-4-5
     litellm_params:
-      model: claude-sonnet-4-6
-      api_base: os.environ/MINDRACODE_API_BASE
-      api_key: os.environ/SSCT_API_CLAUDE_KIRO
+      model: anthropic/claude-haiku-4-5-20251001
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
     model_info:
-      input_cost_per_token:  0.0000006
-      output_cost_per_token: 0.0000030
-      # cache create: 1.25 * input
-      cache_creation_input_token_cost: 0.00000075
-      # cache hit: 0.1 * input
-      cache_read_input_token_cost: 0.00000006
-
-  # # 0.6x
-  # - model_name: claude-sonnet4.6
-  #   litellm_params:
-  #     model: claude-sonnet-4-6
-  #     api_base: os.environ/MINDRACODE_API_BASE
-  #     api_key: os.environ/SSCT_API_CLAUDE_AWS
-  #   model_info:
-  #     input_cost_per_token:  0.0000018
-  #     output_cost_per_token: 0.0000090
-  #     # cache create: 1.25 * input
-  #     cache_creation_input_token_cost: 0.00000225
-  #     # cache hit: 0.1 * input
-  #     cache_read_input_token_cost: 0.00000018
-
-  # # 1x
-  # - model_name: claude-sonnet4.6
-  #   litellm_params:
-  #     model: claude-sonnet-4-6
-  #     api_base: os.environ/MINDRACODE_API_BASE
-  #     api_key: os.environ/SSCT_API_DEFAULT
-  #   model_info:
-  #     input_cost_per_token:  0.0000030
-  #     output_cost_per_token: 0.0000150
-  #     # cache create: 1.25 * input
-  #     cache_creation_input_token_cost: 0.00000375
-  #     # cache hit: 0.1 * input
-  #     cache_read_input_token_cost: 0.00000030
+      # Input: $1.00 / 1M; output: $5.00 / 1M
+      input_cost_per_token:  0.00000100
+      output_cost_per_token: 0.00000500
+      # 5m cache write: $1.25 / 1M; 1h cache write: $2.00 / 1M
+      cache_creation_input_token_cost: 0.00000125
+      # Cache hit: $0.10 / 1M
+      cache_read_input_token_cost:     0.00000010
 
   # -----  Gemini 3 Pro -----------
   - model_name: gemini-3-pro
@@ -269,7 +215,7 @@ model_list:
   #     model: anthropic/claude-sonnet-4-20250514
   #     api_key: os.environ/ANTHROPIC_API_KEY
 
-    # -----  OpenAI official API pricing -----------
+  # -----  OpenAI official API pricing -----------
   # Source: OpenAI API pricing, Standard tier. Prices are converted from USD / 1M tokens to USD / token.
   # Note: gpt-5.2 is not listed on the current official OpenAI API pricing page, so it is left commented out.
 
@@ -286,7 +232,7 @@ model_list:
   - model_name: gpt-5.3-codex
     litellm_params:
       model: openai/gpt-5.3-codex
-      api_base: os.environ/CPA_API_BASE
+      api_base: os.environ/CPA_API_V1_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
       input_cost_per_token:  0.00000175
@@ -296,7 +242,7 @@ model_list:
   - model_name: gpt-5.4
     litellm_params:
       model: openai/gpt-5.4
-      api_base: os.environ/CPA_API_BASE
+      api_base: os.environ/CPA_API_V1_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
       input_cost_per_token:  0.00000250
@@ -310,7 +256,7 @@ model_list:
   - model_name: gpt-5.4-mini
     litellm_params:
       model: openai/gpt-5.4-mini
-      api_base: os.environ/CPA_API_BASE
+      api_base: os.environ/CPA_API_V1_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
       input_cost_per_token:  0.00000075
@@ -320,7 +266,7 @@ model_list:
   - model_name: gpt-5.5
     litellm_params:
       model: openai/gpt-5.5
-      api_base: os.environ/CPA_API_BASE
+      api_base: os.environ/CPA_API_V1_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
       input_cost_per_token:  0.00000500
@@ -333,9 +279,9 @@ model_list:
 
   - model_name: gpt-5.2
     litellm_params:
-      model: openai/gpt-5.5
-      api_base: os.environ/CXM_API_BASE
-      api_key: os.environ/CXM_API_KEY
+      model: openai/gpt-5.2
+      api_base: os.environ/CPA_API_V1_BASE
+      api_key: os.environ/CPA_API_KEY
     model_info:
       input_cost_per_token:  0.00000500
       output_cost_per_token: 0.00003000
@@ -348,7 +294,7 @@ model_list:
   - model_name: gpt-image-2
     litellm_params:
       model: openai/gpt-image-2
-      api_base: os.environ/CPA_API_BASE
+      api_base: os.environ/CPA_API_V1_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
       # Text input: $5.00 / 1M tokens; cached text input: $1.25 / 1M tokens
@@ -373,7 +319,7 @@ model_list:
   - model_name: mimo-v2.5-pro
     litellm_params:
       model: openai/mimo-v2.5-pro
-      api_base: os.environ/MIMO_API_BASE
+      api_base: os.environ/MIMO_API_V1_BASE
       api_key: os.environ/MIMO_API_KEY
     model_info:
       max_input_tokens: 1048576
@@ -396,7 +342,7 @@ model_list:
   - model_name: mimo-v2-pro
     litellm_params:
       model: openai/mimo-v2-pro
-      api_base: os.environ/MIMO_API_BASE
+      api_base: os.environ/MIMO_API_V1_BASE
       api_key: os.environ/MIMO_API_KEY
     model_info:
       max_input_tokens: 1048576
@@ -413,7 +359,7 @@ model_list:
   - model_name: mimo-v2.5
     litellm_params:
       model: openai/mimo-v2.5
-      api_base: os.environ/MIMO_API_BASE
+      api_base: os.environ/MIMO_API_V1_BASE
       api_key: os.environ/MIMO_API_KEY
     model_info:
       max_input_tokens: 1048576
@@ -436,7 +382,7 @@ model_list:
   - model_name: mimo-v2-omni
     litellm_params:
       model: openai/mimo-v2-omni
-      api_base: os.environ/MIMO_API_BASE
+      api_base: os.environ/MIMO_API_V1_BASE
       api_key: os.environ/MIMO_API_KEY
     model_info:
       max_input_tokens: 262144
@@ -452,7 +398,7 @@ model_list:
   - model_name: mimo-v2-flash
     litellm_params:
       model: openai/mimo-v2-flash
-      api_base: os.environ/MIMO_API_BASE
+      api_base: os.environ/MIMO_API_V1_BASE
       api_key: os.environ/MIMO_API_KEY
     model_info:
       max_input_tokens: 262144
@@ -467,3 +413,6 @@ model_list:
 
 general_settings:
   master_key: os.environ/LITELLM_MASTER_KEY
+  store_model_in_db: true
+  store_prompts_in_spend_logs: true
+
