@@ -16,9 +16,9 @@ model_list:
 
   - model_name: claude-fable-5
     litellm_params:
-      model: anthropic/mimo-v2.5-pro
-      api_base: os.environ/MIMO_API_BASE
-      api_key: os.environ/MIMO_API_KEY
+      model: anthropic/claude-fable-5
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
     model_info:
       # Input: $10.00 / 1M; output: $50.00 / 1M
       input_cost_per_token:  0.00001000
@@ -27,6 +27,20 @@ model_list:
       cache_creation_input_token_cost: 0.00001250
       # Cache hit: $1.00 / 1M
       cache_read_input_token_cost:     0.00000100
+
+  - model_name: claude-sonnet-5
+    litellm_params:
+      model: anthropic/claude-sonnet-5
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      # Input: $3.00 / 1M; output: $15.00 / 1M
+      input_cost_per_token:  0.00000300
+      output_cost_per_token: 0.00001500
+      # 5m cache write: $3.75 / 1M; 1h cache write: $6.00 / 1M
+      cache_creation_input_token_cost: 0.00000375
+      # Cache hit: $0.30 / 1M
+      cache_read_input_token_cost:     0.00000030
 
   # Claude Mythos 5 is limited availability; uncomment if your Anthropic account is approved.
   # - model_name: claude-mythos-5
@@ -85,6 +99,20 @@ model_list:
       # Cache hit: $0.50 / 1M
       cache_read_input_token_cost:     0.00000050
 
+  - model_name: claude-opus-4-5-20251101
+    litellm_params:
+      model: anthropic/claude-opus-4-5-20251101
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      # Input: $5.00 / 1M; output: $25.00 / 1M
+      input_cost_per_token:  0.00000500
+      output_cost_per_token: 0.00002500
+      # 5m cache write: $6.25 / 1M; 1h cache write: $10.00 / 1M
+      cache_creation_input_token_cost: 0.00000625
+      # Cache hit: $0.50 / 1M
+      cache_read_input_token_cost:     0.00000050
+  
   - model_name: claude-opus-4-5
     litellm_params:
       model: anthropic/claude-opus-4-5-20251101
@@ -127,7 +155,35 @@ model_list:
       # Cache hit: $0.30 / 1M
       cache_read_input_token_cost:     0.00000030
 
+  - model_name: claude-sonnet-4-5-20250929
+    litellm_params:
+      model: anthropic/claude-sonnet-4-5-20250929
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      # Input: $3.00 / 1M; output: $15.00 / 1M
+      input_cost_per_token:  0.00000300
+      output_cost_per_token: 0.00001500
+      # 5m cache write: $3.75 / 1M; 1h cache write: $6.00 / 1M
+      cache_creation_input_token_cost: 0.00000375
+      # Cache hit: $0.30 / 1M
+      cache_read_input_token_cost:     0.00000030
+
   - model_name: claude-haiku-4-5
+    litellm_params:
+      model: anthropic/claude-haiku-4-5-20251001
+      api_base: os.environ/CPA_API_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      # Input: $1.00 / 1M; output: $5.00 / 1M
+      input_cost_per_token:  0.00000100
+      output_cost_per_token: 0.00000500
+      # 5m cache write: $1.25 / 1M; 1h cache write: $2.00 / 1M
+      cache_creation_input_token_cost: 0.00000125
+      # Cache hit: $0.10 / 1M
+      cache_read_input_token_cost:     0.00000010
+
+  - model_name: claude-haiku-4-5-20251001
     litellm_params:
       model: anthropic/claude-haiku-4-5-20251001
       api_base: os.environ/CPA_API_BASE
