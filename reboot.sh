@@ -16,6 +16,8 @@ fi
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$script_dir"
 
+docker pull ghcr.io/xinlong-wu/litellm-all-in-one:latest
+
 sleep "$delay_seconds"
 
 docker compose -f ./docker-compose.yaml down

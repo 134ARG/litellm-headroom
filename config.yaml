@@ -16,7 +16,7 @@ model_list:
 
   - model_name: claude-fable-5
     litellm_params:
-      model: anthropic/claude-fable-5
+      model: anthropic/kimi-k3
       api_base: os.environ/CPA_API_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
@@ -30,7 +30,7 @@ model_list:
 
   - model_name: claude-sonnet-5
     litellm_params:
-      model: anthropic/claude-sonnet-5
+      model: anthropic/kimi-k3
       api_base: os.environ/CPA_API_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
@@ -59,7 +59,7 @@ model_list:
 
   - model_name: claude-opus-4-8
     litellm_params:
-      model: anthropic/claude-opus-4-8
+      model: anthropic/kimi-k3
       api_base: os.environ/CPA_API_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
@@ -73,7 +73,7 @@ model_list:
 
   - model_name: claude-opus-4-7
     litellm_params:
-      model: anthropic/claude-opus-4-7
+      model: anthropic/kimi-k2.7-code-highspeed
       api_base: os.environ/CPA_API_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
@@ -87,7 +87,7 @@ model_list:
 
   - model_name: claude-opus-4-6
     litellm_params:
-      model: anthropic/claude-opus-4-6
+      model: anthropic/kimi-k2.7-code
       api_base: os.environ/CPA_API_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
@@ -101,7 +101,7 @@ model_list:
 
   - model_name: claude-opus-4-5-20251101
     litellm_params:
-      model: anthropic/claude-opus-4-5-20251101
+      model: anthropic/kimi-k2.7-code
       api_base: os.environ/CPA_API_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
@@ -115,7 +115,7 @@ model_list:
   
   - model_name: claude-opus-4-5
     litellm_params:
-      model: anthropic/claude-opus-4-5-20251101
+      model: anthropic/kimi-k2.7-code
       api_base: os.environ/CPA_API_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
@@ -129,7 +129,7 @@ model_list:
 
   - model_name: claude-sonnet-4-6
     litellm_params:
-      model: anthropic/claude-sonnet-4-6
+      model: anthropic/kimi-k2.7-code
       api_base: os.environ/CPA_API_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
@@ -143,7 +143,7 @@ model_list:
 
   - model_name: claude-sonnet-4-5
     litellm_params:
-      model: anthropic/claude-sonnet-4-5-20250929
+      model: anthropic/kimi-k2.7-code
       api_base: os.environ/CPA_API_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
@@ -157,7 +157,7 @@ model_list:
 
   - model_name: claude-sonnet-4-5-20250929
     litellm_params:
-      model: anthropic/claude-sonnet-4-5-20250929
+      model: anthropic/kimi-k2.7-code
       api_base: os.environ/CPA_API_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
@@ -171,7 +171,7 @@ model_list:
 
   - model_name: claude-haiku-4-5
     litellm_params:
-      model: anthropic/claude-haiku-4-5-20251001
+      model: anthropic/kimi-k2.7-code
       api_base: os.environ/CPA_API_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
@@ -185,7 +185,7 @@ model_list:
 
   - model_name: claude-haiku-4-5-20251001
     litellm_params:
-      model: anthropic/claude-haiku-4-5-20251001
+      model: anthropic/kimi-k2.7-code
       api_base: os.environ/CPA_API_BASE
       api_key: os.environ/CPA_API_KEY
     model_info:
@@ -285,6 +285,74 @@ model_list:
   #     output_cost_per_token: null
   #     cache_read_input_token_cost: null
 
+  - model_name: gpt-5.6
+    litellm_params:
+      model: openai/gpt-5.6-sol
+      api_base: os.environ/CPA_API_V1_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      # Short context: input $5.00 / 1M; cache write $6.25 / 1M; cached input $0.50 / 1M; output $30.00 / 1M
+      input_cost_per_token:  0.00000500
+      output_cost_per_token: 0.00003000
+      cache_creation_input_token_cost: 0.00000625
+      cache_read_input_token_cost:     0.00000050
+      # Long context: input $10.00 / 1M; cache write $12.50 / 1M; cached input $1.00 / 1M; output $45.00 / 1M
+      input_cost_per_token_above_270k_tokens:  0.00001000
+      output_cost_per_token_above_270k_tokens: 0.00004500
+      cache_creation_input_token_cost_above_270k_tokens: 0.00001250
+      cache_read_input_token_cost_above_270k_tokens:     0.00000100
+
+  - model_name: gpt-5.6-sol
+    litellm_params:
+      model: openai/gpt-5.6-sol
+      api_base: os.environ/CPA_API_V1_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      # Short context: input $5.00 / 1M; cache write $6.25 / 1M; cached input $0.50 / 1M; output $30.00 / 1M
+      input_cost_per_token:  0.00000500
+      output_cost_per_token: 0.00003000
+      cache_creation_input_token_cost: 0.00000625
+      cache_read_input_token_cost:     0.00000050
+      # Long context: input $10.00 / 1M; cache write $12.50 / 1M; cached input $1.00 / 1M; output $45.00 / 1M
+      input_cost_per_token_above_270k_tokens:  0.00001000
+      output_cost_per_token_above_270k_tokens: 0.00004500
+      cache_creation_input_token_cost_above_270k_tokens: 0.00001250
+      cache_read_input_token_cost_above_270k_tokens:     0.00000100
+
+  - model_name: gpt-5.6-terra
+    litellm_params:
+      model: openai/gpt-5.6-terra
+      api_base: os.environ/CPA_API_V1_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      # Short context: input $2.50 / 1M; cache write $3.125 / 1M; cached input $0.25 / 1M; output $15.00 / 1M
+      input_cost_per_token:  0.00000250
+      output_cost_per_token: 0.00001500
+      cache_creation_input_token_cost: 0.000003125
+      cache_read_input_token_cost:     0.00000025
+      # Long context: input $5.00 / 1M; cache write $6.25 / 1M; cached input $0.50 / 1M; output $22.50 / 1M
+      input_cost_per_token_above_270k_tokens:  0.00000500
+      output_cost_per_token_above_270k_tokens: 0.00002250
+      cache_creation_input_token_cost_above_270k_tokens: 0.00000625
+      cache_read_input_token_cost_above_270k_tokens:     0.00000050
+
+  - model_name: gpt-5.6-luna
+    litellm_params:
+      model: openai/gpt-5.6-luna
+      api_base: os.environ/CPA_API_V1_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      # Short context: input $1.00 / 1M; cache write $1.25 / 1M; cached input $0.10 / 1M; output $6.00 / 1M
+      input_cost_per_token:  0.00000100
+      output_cost_per_token: 0.00000600
+      cache_creation_input_token_cost: 0.00000125
+      cache_read_input_token_cost:     0.00000010
+      # Long context: input $2.00 / 1M; cache write $2.50 / 1M; cached input $0.20 / 1M; output $9.00 / 1M
+      input_cost_per_token_above_270k_tokens:  0.00000200
+      output_cost_per_token_above_270k_tokens: 0.00000900
+      cache_creation_input_token_cost_above_270k_tokens: 0.00000250
+      cache_read_input_token_cost_above_270k_tokens:     0.00000020
+
   - model_name: gpt-5.3-codex
     litellm_params:
       model: openai/gpt-5.3-codex
@@ -347,6 +415,20 @@ model_list:
       output_cost_per_token_above_270k_tokens: 0.00004500
       cache_read_input_token_cost_above_270k_tokens: 0.00000100
 
+  - model_name: codex-auto-review
+    litellm_params:
+      model: openai/codex-auto-review
+      api_base: os.environ/CPA_API_V1_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      input_cost_per_token:  0.00000500
+      output_cost_per_token: 0.00003000
+      cache_read_input_token_cost: 0.00000050
+      # Official long-context pricing applies above 270K tokens.
+      input_cost_per_token_above_270k_tokens:  0.00001000
+      output_cost_per_token_above_270k_tokens: 0.00004500
+      cache_read_input_token_cost_above_270k_tokens: 0.00000100
+
   - model_name: gpt-image-2
     litellm_params:
       model: openai/gpt-image-2
@@ -361,6 +443,74 @@ model_list:
       cache_read_input_token_cost: 0.00000125
       image_input_cost_per_token: 0.00000800
       image_cache_read_input_token_cost: 0.00000200
+
+  # -----  Kimi / Moonshot AI official API -----------
+  # Source: https://platform.kimi.com/docs/pricing/chat
+  # Official pricing: CNY / 1M tokens. LiteLLM pricing fields: USD / token.
+  # Exchange rate: 1 USD = ¥6.8 (kept consistent with the MiMo section below).
+  # Kimi context caching is automatic. input_cost_per_token is the cache-miss
+  # price; cache_read_input_token_cost is the cache-hit price.
+  # Official API base: https://api.moonshot.cn/v1
+
+  - model_name: kimi-k3
+    litellm_params:
+      model: openai/kimi-k3
+      api_base: os.environ/CPA_API_V1_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      max_input_tokens: 1048576
+      # Cache hit: ¥2.00 / 1M => $0.294117647 / 1M
+      cache_read_input_token_cost: 0.000000294117647
+      # Cache miss: ¥20.00 / 1M => $2.941176471 / 1M
+      input_cost_per_token: 0.000002941176471
+      # Output: ¥100.00 / 1M => $14.705882353 / 1M
+      output_cost_per_token: 0.000014705882353
+
+  - model_name: kimi-k2.7-code
+    litellm_params:
+      model: openai/kimi-k2.7-code
+      api_base: os.environ/CPA_API_V1_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      max_input_tokens: 262144
+      # Cache hit: ¥1.30 / 1M => $0.191176471 / 1M
+      cache_read_input_token_cost: 0.000000191176471
+      # Cache miss: ¥6.50 / 1M => $0.955882353 / 1M
+      input_cost_per_token: 0.000000955882353
+      # Output: ¥27.00 / 1M => $3.970588235 / 1M
+      output_cost_per_token: 0.000003970588235
+
+  - model_name: kimi-k2.7-code-highspeed
+    litellm_params:
+      model: openai/kimi-k2.7-code-highspeed
+      api_base: os.environ/CPA_API_V1_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      max_input_tokens: 262144
+      # Cache hit: ¥2.60 / 1M => $0.382352941 / 1M
+      cache_read_input_token_cost: 0.000000382352941
+      # Cache miss: ¥13.00 / 1M => $1.911764706 / 1M
+      input_cost_per_token: 0.000001911764706
+      # Output: ¥54.00 / 1M => $7.941176471 / 1M
+      output_cost_per_token: 0.000007941176471
+
+  - model_name: kimi-k2.6
+    litellm_params:
+      model: openai/kimi-k2.6
+      api_base: os.environ/CPA_API_V1_BASE
+      api_key: os.environ/CPA_API_KEY
+    model_info:
+      max_input_tokens: 262144
+      # Cache hit: ¥1.10 / 1M => $0.161764706 / 1M
+      cache_read_input_token_cost: 0.000000161764706
+      # Cache miss: ¥6.50 / 1M => $0.955882353 / 1M
+      input_cost_per_token: 0.000000955882353
+      # Output: ¥27.00 / 1M => $3.970588235 / 1M
+      output_cost_per_token: 0.000003970588235
+
+  # Kimi K2.5 and Moonshot V1 are not enabled here: the official model list
+  # says they are closed to new users and scheduled for full retirement on
+  # 2026-08-31.
 
   # -----  MiMo -----------
   # Exchange rate: 1 USD = ¥6.8
@@ -471,4 +621,4 @@ general_settings:
   master_key: os.environ/LITELLM_MASTER_KEY
   store_model_in_db: true
   store_prompts_in_spend_logs: true
-
+  maximum_spend_logs_prompt_retention_period: "10d"
